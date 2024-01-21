@@ -1,20 +1,71 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import HomeTab from "./navigations/HomeTab";
+import List from "./screens/List";
+import Signup from "./screens/Signup";
+import Profile from "./screens/Profile";
+import Details from "./screens/Details";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { StatusBar } from "react-native";
 
+const Stack = createStackNavigator();
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <StatusBar
+        barStyle="dark-content"
+        hidden={false}
+        backgroundColor="#e0f4f1"
+        color="white"
+        translucent={false}
+      />
+      <Stack.Navigator>
+        <Stack.Screen
+          name="HomeTab"
+          component={HomeTab}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{
+            headerShown: true,
+            headerBackTitleVisible: true,
+            headerTitleStyle: { color: "white" },
+            headerBackTitle: "Back",
+          }}
+        />
+        <Stack.Screen
+          name="List"
+          component={List}
+          options={{
+            headerShown: true,
+            headerBackTitleVisible: true,
+            headerTitleStyle: { color: "white" },
+            headerBackTitle: "Back",
+          }}
+        />
+        <Stack.Screen
+          name={"Details"}
+          component={Details}
+          options={{
+            headerShown: true,
+            headerBackTitleVisible: true,
+            headerTitleStyle: { color: "white" },
+            headerBackTitle: "Back",
+          }}
+        />
+        <Stack.Screen
+          name="Signup"
+          component={Signup}
+          options={{
+            headerShown: true,
+            headerBackTitleVisible: true,
+            headerTitleStyle: { color: "white" },
+            headerBackTitle: "Back",
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
